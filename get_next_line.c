@@ -6,40 +6,29 @@
 /*   By: nbalando <nbalando@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 14:59:12 by nbalando          #+#    #+#             */
-/*   Updated: 2024/08/07 21:03:03 by nbalando         ###   ########.fr       */
+/*   Updated: 2024/08/07 22:10:12 by nbalando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include <cstring>
 #include <unistd.h>
 
-
-	// if(read(fd, main_buffer, BUFFER_SIZE) < 0)
-	// 	return ("failed to read");
-
-char *ft_rewrite(char *str)
+char *ft_rewrite(char *temp)
 {
 	int i;
 	int j;
+	char *just_a_buffer;
 
 	i = 0;
-	while(str[i] != '\n')
+	while(temp[i] != '\n')
 		i++;
-	char *temp = ft_calloc(BUFFER_SIZE - i + 1, sizeof(char));
-	while(str[i++] != '\0')
-		temp[i] = str[i];
-	ft_bzero(str, i);
-	i = 0;
-	while(temp[i])
-	{
-		str[i] = temp[i];
-		i++;
-	}
-	return(str);
+	just_a_buffer = ft_calloc(BUFFER_SIZE - i + 1, sizeof(char));
+	j = 0;
+	while(temp[i++] != '\0')
+		just_a_buffer[j] = temp[i];
+	free(temp);
+	return(just_a_buffer);
 }
-	// if(!main_buffer)
-	// 	return(temp);
 
 static char *ft_append (char *main_buffer, char *temp)
 {
@@ -54,8 +43,8 @@ static char *ft_append (char *main_buffer, char *temp)
 	j = 0;
 	while (temp[j] != '\0' && temp[j] != '\n')
 		third[i++] = temp[j++];
-	ft_rewrite(temp);
-	return (temp);
+	temp = ft_rewrite(temp);
+	return (third);
 }
 
 static char* create_line(char *main_buffer, int fd)
@@ -73,10 +62,6 @@ static char* create_line(char *main_buffer, int fd)
 }
 char *get_next_line (int fd)
 {
-		// runs everything
-// contains static char pointer
-// check if input data and  buffer size is valid
-// calls function "1"
 	static char* main_buffer;
 	char *new_line;
 
