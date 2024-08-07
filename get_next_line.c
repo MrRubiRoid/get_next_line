@@ -6,7 +6,7 @@
 /*   By: nbalando <nbalando@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 14:59:12 by nbalando          #+#    #+#             */
-/*   Updated: 2024/08/07 22:10:12 by nbalando         ###   ########.fr       */
+/*   Updated: 2024/08/07 22:16:12 by nbalando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static char* create_line(char *main_buffer, int fd)
 {
 	char *temp;
 
-	temp = calloc(BUFFER_SIZE, sizeof(char));
+	temp = ft_calloc(BUFFER_SIZE, sizeof(char));
 	if(!main_buffer)
 		main_buffer = ft_calloc(1, 1);
 	while(read(fd, temp, BUFFER_SIZE) >= 0)
