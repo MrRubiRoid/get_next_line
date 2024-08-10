@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nbalando <nbalando@student.42vienna.com    +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 17:00:37 by nbalando          #+#    #+#             */
-/*   Updated: 2024/08/07 18:36:00 by nbalando         ###   ########.fr       */
+/*   Updated: 2024/08/10 19:24:49 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define GET_NEXT_LINE_H
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 12
+#  define BUFFER_SIZE 3
 # endif
 
 # include <stdlib.h>
@@ -24,7 +24,7 @@
 # include <fcntl.h>
 # include <limits.h>
 
-char *get_next_line(int fd);
+char	*get_next_line(int fd);
 char	*ft_strchr(const char *s, int c);
 void	*ft_memset(void *array, int c, size_t n);
 void	ft_bzero(void *s, size_t n);
