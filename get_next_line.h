@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 17:00:37 by nbalando          #+#    #+#             */
-/*   Updated: 2024/08/10 19:24:49 by codespace        ###   ########.fr       */
+/*   Updated: 2024/08/10 20:53:24 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define GET_NEXT_LINE_H
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 3
+#  define BUFFER_SIZE 100
 # endif
 
 # include <stdlib.h>

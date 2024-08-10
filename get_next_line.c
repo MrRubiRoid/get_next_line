@@ -6,11 +6,12 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 14:59:12 by nbalando          #+#    #+#             */
-/*   Updated: 2024/08/10 19:24:27 by codespace        ###   ########.fr       */
+/*   Updated: 2024/08/10 21:00:21 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include <stdio.h>
 
 static char	*ft_append_and_free(char *buf1, char *buf2)
 {
@@ -104,6 +105,7 @@ char	*get_next_line(int fd)
 		{
 			result = before_nl(buf1);
 			buf1 = after_nl(buf1);
+			printf("in the loop :%s|\n", buf1);
 			return (result);
 		}
 	}
@@ -116,7 +118,6 @@ int main (void)
 	int fd;
 
 	fd = open("text.txt", O_RDWR);
-	printf("fd = %d\n", fd);
 	while ((line = get_next_line(fd)))
 		printf("%s\n", line);
 	printf("HAPPY END");
