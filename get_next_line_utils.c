@@ -5,83 +5,100 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/05 17:44:05 by nbalando          #+#    #+#             */
-/*   Updated: 2024/08/11 06:46:53 by codespace        ###   ########.fr       */
+/*   Created: 2024/08/11 11:37:05 by nbalando          #+#    #+#             */
+/*   Updated: 2024/08/11 10:02:11 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include <string.h>
 
-char	*ft_strchr(const char *s, int c)
+void	release_memory(char **ptr)
 {
-	if (!s)
+	if (ptr != NULL && *ptr != NULL)
 	{
-		s = ft_calloc(1, sizeof(char));
-		if (!s)
-			return (0);
+		free(*ptr);
+		*ptr = NULL;
 	}
-	while (*s != '\0')
-	{
-		if (*s == (char)c)
-			return ((char *)s);
-		s++;
-	}
-	if (*s == (char)c)
-		return ((char *)s);
-	else
-		return (NULL);
 }
 
-void	*ft_memset(void *array, int c, size_t n)
+size_t	string_length(const char *str)
 {
-	unsigned char	*buffer;
-
-	buffer = (unsigned char *)array;
-	while (n--)
-		*buffer++ = (unsigned char)c;
-	return (array);
-}
-
-void	ft_bzero(void *s, size_t n)
-{
-	ft_memset(s, 0, n);
-}
-void	*ft_calloc(size_t nmemb, size_t size)
-{
-	void	*memory;
-	size_t	nbytes;
-
-	if (nmemb != 0 && size > SIZE_MAX / nmemb)
-		return (NULL);
-	nbytes = nmemb * size;
-	memory = malloc(nbytes);
-	if (memory == NULL)
-		return (NULL);
-	ft_bzero(memory, nbytes);
-	return (memory);
-}
-char	*ft_strcpy(char *dest, char *src)
-{
-	int	i;
-
-	i = 0;
-	while (src[i] != '\0')
-	{
-		dest[i] = src[i];
-		i++;
-	}
-	dest[i] = '\0';
-	return (dest);
-}
-size_t	ft_strlen(const char *c)
-{
-	int len;
+	size_t	len;
 
 	len = 0;
-	while (c[len] != '\0')
+	if (!str)
+	{
+		return (0);
+	}
+	while (*str)
 	{
 		len++;
+		str++;
 	}
 	return (len);
+}
+
+void	*safe_allocate(size_t count, size_t size)
+{
+	unsigned char	*mem;
+	size_t			total;
+
+	if (count && SIZE_MAX / count < size)
+		return (NULL);
+	total = (count * size) - 1;
+	mem = malloc(count * size);
+	if (!mem)
+		return (0);
+	while (total + 1 > 0)
+	{
+		mem[total] = 0;
+		total--;
+	}
+	return ((void *)mem);
+}
+
+char	*find_char(const char *str, int c)
+{
+	if (!str)
+		return (NULL);
+	while (*str)
+	{
+		if (*str == (char)c)
+			return ((char *)str);
+		str++;
+	}
+	if (*str == (char)c)
+	{
+		return ((char *)str);
+	}
+	return (NULL);
+}
+
+char	*string_combine(const char *s1, const char *s2)
+{
+	char	*result;
+	size_t	i;
+	size_t	j;
+
+	if (!s1 && !s2)
+		return (NULL);
+	result = malloc(string_length(s1) + string_length(s2) + 1);
+	if (!result)
+		return (0);
+	i = 0;
+	j = 0;
+	while (s1 && s1[i])
+	{
+		result[i] = s1[i];
+		i++;
+	}
+	j = i;
+	i = 0;
+	while (s2 && s2[i])
+	{
+		result[j + i] = s2[i];
+		i++;
+	}
+	result[j + i] = 0;
+	return (result);
 }

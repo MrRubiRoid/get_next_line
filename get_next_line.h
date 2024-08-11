@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/04 17:00:37 by nbalando          #+#    #+#             */
-/*   Updated: 2024/08/11 06:44:43 by codespace        ###   ########.fr       */
+/*   Created: 2024/08/11 11:37:12 by nbalando          #+#    #+#             */
+/*   Updated: 2024/08/11 10:02:17 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,23 @@
 # define GET_NEXT_LINE_H
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1000
+#  define BUFFER_SIZE 42
 # endif
 
-# include <stdlib.h>
-# include <stdio.h>
-# include <stdint.h>
-# include <unistd.h>
 # include <fcntl.h>
 # include <limits.h>
+# include <stddef.h>
+# include <stdint.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <string.h>
+# include <unistd.h>
 
-char	*get_next_line(int fd);
-char	*ft_strchr(const char *s, int c);
-void	*ft_memset(void *array, int c, size_t n);
-void	ft_bzero(void *s, size_t n);
-void	*ft_calloc(size_t nmemb, size_t size);
-char	*ft_strcpy(char *dest, char *src);
-size_t	ft_strlen(const char *c);
+char	*get_next_line(int file_descriptor);
+char	*string_combine(char const *str1, char const *str2);
+char	*find_char(const char *haystack, int needle);
+void	*safe_allocate(size_t count, size_t size);
+size_t	string_length(const char *input);
+void	release_memory(char **ptr);
 
 #endif
