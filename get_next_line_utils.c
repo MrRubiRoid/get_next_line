@@ -6,11 +6,12 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 17:44:05 by nbalando          #+#    #+#             */
-/*   Updated: 2024/08/10 15:51:07 by codespace        ###   ########.fr       */
+/*   Updated: 2024/08/11 06:46:53 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include <string.h>
 
 char	*ft_strchr(const char *s, int c)
 {
@@ -73,7 +74,7 @@ char	*ft_strcpy(char *dest, char *src)
 	dest[i] = '\0';
 	return (dest);
 }
-size_t	strlen(const char *c)
+size_t	ft_strlen(const char *c)
 {
 	int len;
 
